@@ -4,6 +4,8 @@ const loginEmail = document.querySelector('#login-email');
 const loginPassword = document.querySelector('#login-password');
 const loginBtn = document.querySelector('#login-btn');
 
+// Set your backend URL (replace this with your backend deployed URL)
+const backendUrl = 'https://your-backend-url.onrender.com'; // Update this
 
 // Registration Process (Sign Up)
 if (submitBtn) {
@@ -32,9 +34,9 @@ function saveData(firstName, lastName, email, password1, password2) {
         case (password1 !== password2):
             alert("Passwords do not match!");
             break;
-            
-            case(!passwordRegex.test(password1)):
-            alert("Password must be at least 6 characters long, contain at least one uppercase letter, and one special character."); 
+
+        case(!passwordRegex.test(password1)):
+            alert("Password must be at least 6 characters long, contain at least one uppercase letter, and one special character.");
             break;
 
         case (!validateEmail(email)):
@@ -50,9 +52,8 @@ function saveData(firstName, lastName, email, password1, password2) {
             break;
 
         default:
-           
-
-            fetch('http://localhost:3000/save-note', {
+            // Update fetch URL to your backend URL
+            fetch(`${backendUrl}/save-note`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,8 +66,6 @@ function saveData(firstName, lastName, email, password1, password2) {
                         alert(data.message);
                         form.reset();
                         window.location.href = 'main.html'; 
-                        
-
                     } else {
                         alert(data.message);
                     }
@@ -92,7 +91,8 @@ if (loginBtn) {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/login-note", {
+            // Update fetch URL to your backend URL
+            const response = await fetch(`${backendUrl}/login-note`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -104,8 +104,6 @@ if (loginBtn) {
 
             if (result.success) {
                 alert("Login successful!");
-                // Redirect or update UI here
-
                 window.location.href = 'main.html';
             } else {
                 alert(result.message || "Login failed.");
@@ -115,14 +113,7 @@ if (loginBtn) {
             alert("Something went wrong. Please try again later.");
         }
     });
-
-
-
-
-
 }
-
-
 
 // Email validation 
 function validateEmail(email) {
@@ -133,36 +124,3 @@ function validateEmail(email) {
         atIndex < email.length - 1
     );
 }
-
-// function deleteAcc() {
-  
-  
-    
-  
-//     fetch("http://localhost:3000/delete-account", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify({ email, password1: password })
-//     })
-//       .then(res => res.json())
-//       .then(data => {
-//         if (data.success) {
-//           alert(data.message);
-//           window.location.href = "login.html"; 
-//         } else {
-//           alert(data.message);
-//         }
-//       })
-//       .catch(err => {
-//         console.error("Error deleting account:", err);
-//         alert("Something went wrong while deleting the account.");
-//       });
-//   }
-  
-
-//*************************** */
-
-
-  
