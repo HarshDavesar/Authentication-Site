@@ -15,15 +15,8 @@ app.use(cors());
 app.use(cookieParser());  // Initialize cookie parser
 
 // MongoDB connection
-// mongoose.connect("mongodb+srv://harshdavesar05:zPZYx2Rlu4bI6Lc9@cluster0.tgioyci.mongodb.net/authApp?retryWrites=true&w=majority&appName=Cluster0")
-require('dotenv').config(); // Add this at the top if it's not already there
+ mongoose.connect("mongodb+srv://harshdavesar05:zPZYx2Rlu4bI6Lc9@cluster0.tgioyci.mongodb.net/authApp?retryWrites=true&w=majority&appName=Cluster0")
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log("MongoDB Connected!"))
-.catch(err => console.log('Mongo Error:', err));
  
 // Auth Schema
 const authSchema = new mongoose.Schema({
