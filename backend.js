@@ -15,7 +15,7 @@ app.use(cors());
 app.use(cookieParser());  // Initialize cookie parser
 
 // MongoDB connection
-mongoose.connect("mongodb://127.0.0.1:27017/Authentication")
+mongoose.connect("mongodb+srv://harshdavesar05:zPZYx2Rlu4bI6Lc9@cluster0.tgioyci.mongodb.net/authApp?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => console.log("MongoDB Connected!"))
   .catch(err => console.log('Mongo Error:', err));
 
@@ -234,7 +234,7 @@ const verifyToken = (req, res, next) => {
 // Get User's Email (Protected Route)
 app.get('/get-user-email', verifyToken, async (req, res) => {
   try {
-    const user = await AuthData.findById(req.user.id);  
+    const user = await AuthData.findById(req.user.id);
     if (!user) {
       return res.status(404).json({
         success: false,
