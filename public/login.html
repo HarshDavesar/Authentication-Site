@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #B2A5FF;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            height: 70px;
+            background-color: #000000;
+            color: whitesmoke;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+        }
+
+        h1 {
+            text-shadow: 2px 2px 5px rgba(196, 73, 244, 0.642);
+        }
+
+        h1 span {
+            color: #fd4459;
+        }
+
+        #formWrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #main {
+            background-color: #B799FF;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 15px rgb(0, 0, 0);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        #main h2 {
+            font-size: 26px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 250px;
+        }
+
+        #login-btn {
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #7F27FF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#login-btn:hover {
+    background-color: #5e17eb;
+    transform: scale(1.03);
+}
+
+#login-btn:active {
+    transform: scale(0.97);
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h1>Sign<span>It</span></h1>
+    </nav>
+
+    <div id="formWrapper">
+        <form id="main">
+            <h2>Login</h2>
+            <input id="login-email" type="email" placeholder="E-mail" required>
+            <input id="login-password" type="password" placeholder="Your Password" required>
+        <button type="submit" id="login-btn">Submit</button>
+        </form>
+    </div>
+
+
+    <script src="script.js"></script> 
+</body>
+
+</html>
