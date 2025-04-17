@@ -4,7 +4,7 @@ const showEmail = document.querySelector('#showEmail');
 
 // Show email on page load
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:3000/get-user-email', {
+    fetch('https://authentication-site.onrender.com/get-user-email', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ deleteacc.addEventListener('click', (e) => {
     const password = prompt("Enter your password to confirm account deletion:");
 
     if (password) {
-        fetch('http://localhost:3000/delete-account', {
+        fetch('https://authentication-site.onrender.com/delete-account', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
