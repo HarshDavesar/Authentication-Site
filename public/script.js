@@ -4,10 +4,9 @@ const loginEmail = document.querySelector('#login-email');
 const loginPassword = document.querySelector('#login-password');
 const loginBtn = document.querySelector('#login-btn');
 
-// Set your backend URL (replace this with your backend deployed URL)
-const backendUrl = 'https://your-backend-url.onrender.com'; // Update this
+const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
 
-// Registration Process (Sign Up)
+// Registration Process
 if (submitBtn) {
     submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -22,9 +21,6 @@ if (submitBtn) {
     });
 }
 
-const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
-
-// Save data to backend   SignUp
 function saveData(firstName, lastName, email, password1, password2) {
     switch (true) {
         case (password1 === "" || password2 === ""):
@@ -35,12 +31,12 @@ function saveData(firstName, lastName, email, password1, password2) {
             alert("Passwords do not match!");
             break;
 
-        case(!passwordRegex.test(password1)):
-            alert("Password must be at least 6 characters long, contain at least one uppercase letter, and one special character.");
+        case (!passwordRegex.test(password1)):
+            alert("Password must be at least 6 characters long, contain one uppercase letter, and one special character.");
             break;
 
         case (!validateEmail(email)):
-            alert("Invalid email! It must contain exactly one '@' and not at the start or end.");
+            alert("Invalid email format.");
             break;
 
         case (firstName === ""):
@@ -52,20 +48,20 @@ function saveData(firstName, lastName, email, password1, password2) {
             break;
 
         default:
-            // Update fetch URL to your backend URL
-            fetch(`${backendUrl}/save-note`, {
+            fetch('/save-note', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ firstName, lastName, email, password1 })
+                body: JSON.stringify({ firstName, lastName, email, password1 }),
+                credentials: 'include'  // Needed for cookies
             })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
                         alert(data.message);
                         form.reset();
-                        window.location.href = 'main.html'; 
+                        window.location.href = 'main.html';
                     } else {
                         alert(data.message);
                     }
@@ -91,13 +87,13 @@ if (loginBtn) {
         }
 
         try {
-            // Update fetch URL to your backend URL
-            const response = await fetch(`${backendUrl}/login-note`, {
-                method: "POST",
+            const response = await fetch('/login-note', {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json"
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, password1: password })
+                body: JSON.stringify({ email, password1: password }),
+                credentials: 'include'
             });
 
             const result = await response.json();
@@ -115,7 +111,7 @@ if (loginBtn) {
     });
 }
 
-// Email validation 
+// Email validation
 function validateEmail(email) {
     const atIndex = email.indexOf("@");
     return (
